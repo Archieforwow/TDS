@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "TDS/Core/TDS_Types.h"
 #include "TDSCharacter.generated.h"
 
 
@@ -34,6 +35,12 @@ private:
 	class USpringArmComponent* CameraBoom;
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	EMovementState MovementState = EMovementState::Run_State;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	FCharacterSpeed MovementInfo;
+
 	UFUNCTION()
 	void InputAxisX(float Value);
 
@@ -45,5 +52,11 @@ public:
 
 	UFUNCTION()
 	void MovementTick(float DeltaTime);
+
+	UFUNCTION(BlueprintCallable)
+	void CharacterUpdate();
+
+	UFUNCTION(BlueprintCallable)
+	void ChangeMovementState(EMovementState NewMovementState);
 };
 
