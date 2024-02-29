@@ -42,6 +42,12 @@ public:
 	FCharacterSpeed MovementSpeedInfo;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	FTimerHandle SprintTimeHandle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	FTimerHandle CooldownTimeHandle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	bool SprintRunEnabled = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
@@ -59,6 +65,8 @@ public:
 	float AxisX = 0.0f;
 	float AxisY = 0.0f;
 
+	bool bIsOnCooldown;
+
 	UFUNCTION()
 	void MovementTick(float DeltaTime);
 
@@ -67,5 +75,14 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void ChangeMovementState();
+
+	UFUNCTION(BlueprintCallable)
+	void FatigueOn();
+
+	UFUNCTION(BlueprintCallable)
+	void StartCooldown();
+
+	UFUNCTION(BlueprintCallable)
+	void EndCooldown();
 };
 

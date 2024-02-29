@@ -119,35 +119,62 @@ void ATDSCharacter::ChangeMovementState()
 {
 	if (!WalkEnabled && !SprintRunEnabled && !AimEnabled)
 	{
+		SetupPlayerInputComponent(InputComponent);
 		MovementState = EMovementState::Run_State;
 	}
 	else
 	{
-		if (SprintRunEnabled)
+		if (SprintRunEnabled && !bIsOnCooldown)
 		{
 			WalkEnabled = false;
 			AimEnabled = false;
 			MovementState = EMovementState::SprintRun_State;
+			GetWorldTimerManager().SetTimer(SprintTimeHandle, this, &ATDSCharacter::FatigueOn, 1.0f);
+			StartCooldown();
+			InputComponent->ClearAxisBindings();
 		}
+
 		if (WalkEnabled && !SprintRunEnabled && AimEnabled)
 		{
+			SetupPlayerInputComponent(InputComponent);
 			MovementState = EMovementState::AimWalk_State;
 		}
 		else
 		{
 			if (WalkEnabled && !SprintRunEnabled && !AimEnabled)
 			{
+				SetupPlayerInputComponent(InputComponent);
 				MovementState = EMovementState::Walk_State;
 			}
 			else
 			{
 				if (!WalkEnabled && !SprintRunEnabled && AimEnabled)
 				{
+					SetupPlayerInputComponent(InputComponent);
 					MovementState = EMovementState::Aim_State;
 				}
 			}
 		}
 	}
 	CharacterUpdate();
+}
+
+void ATDSCharacter::FatigueOn()
+{
+	//SetupPlayerInputComponent(InputComponent);
+	SprintRunEnabled = false;
+	MovementState = EMovementState::Run_State;
+	CharacterUpdate();
+}
+
+void ATDSCharacter::StartCooldown()
+{
+	bIsOnCooldown = true;
+	GetWorldTimerManager().SetTimer(CooldownTimeHandle, this, &ATDSCharacter::EndCooldown, 10.0f);
+}
+
+void ATDSCharacter::EndCooldown()
+{
+	bIsOnCooldown = false;
 }
 
