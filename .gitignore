@@ -2,6 +2,9 @@ Binaries
 DerivedDataCache
 Intermediate
 Saved
+Content/Assets
+Content/TopDown/Maps/TopDownMap.umap
+Content/TopDown/Maps/TopDownMap_BuiltData.uasset
 .vscode
 .vs
 *.VC.db
