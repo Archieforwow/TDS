@@ -119,7 +119,7 @@ void ATDSCharacter::ChangeMovementState()
 {
 	if (!WalkEnabled && !SprintRunEnabled && !AimEnabled)
 	{
-		SetupPlayerInputComponent(InputComponent);
+		SetupPlayerInputComponent(InputComponent);			
 		MovementState = EMovementState::Run_State;
 	}
 	else
@@ -135,13 +135,13 @@ void ATDSCharacter::ChangeMovementState()
 		}
 
 		if (WalkEnabled && !SprintRunEnabled && AimEnabled)
-		{
+		{	
 			SetupPlayerInputComponent(InputComponent);
 			MovementState = EMovementState::AimWalk_State;
 		}
 		else
 		{
-			if (WalkEnabled && !SprintRunEnabled && !AimEnabled)
+			if (WalkEnabled && !SprintRunEnabled && !AimEnabled)				
 			{
 				SetupPlayerInputComponent(InputComponent);
 				MovementState = EMovementState::Walk_State;
@@ -170,7 +170,7 @@ void ATDSCharacter::FatigueOn()
 void ATDSCharacter::StartCooldown()
 {
 	bIsOnCooldown = true;
-	GetWorldTimerManager().SetTimer(CooldownTimeHandle, this, &ATDSCharacter::EndCooldown, 10.0f);
+	GetWorldTimerManager().SetTimer(CooldownTimeHandle, this, &ATDSCharacter::EndCooldown, 3.0f);
 }
 
 void ATDSCharacter::EndCooldown()
