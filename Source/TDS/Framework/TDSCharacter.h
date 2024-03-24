@@ -56,6 +56,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
 	bool AimEnabled = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	bool bIsOnCooldown;
+
 	UFUNCTION()
 	void InputAxisX(float Value);
 
@@ -64,8 +67,6 @@ public:
 
 	float AxisX = 0.0f;
 	float AxisY = 0.0f;
-
-	bool bIsOnCooldown;
 
 	UFUNCTION()
 	void MovementTick(float DeltaTime);

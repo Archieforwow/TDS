@@ -33,7 +33,7 @@ struct FCharacterSpeed
 	float AimSpeedWalk = 100.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement");
-	float SpeedRunSpeedRun = 3000.0f;
+	float SpeedRunSpeedRun = 3500.0f;
 };
 
 
