@@ -133,8 +133,8 @@ void ATDSCharacter::MovementTick(float DeltaTime)
 		if (TDS_PlayerController)
 		{
 			FHitResult ResultHit;
-			//TDS_PlayerController->GetHitResultUnderCursorByChannel(ETraceTypeQuery::TraceTypeQuery6, false, ResultHit);
-			TDS_PlayerController->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, ResultHit);
+			TDS_PlayerController->GetHitResultUnderCursorByChannel(ETraceTypeQuery::TraceTypeQuery6, false, ResultHit);
+			//TDS_PlayerController->GetHitResultUnderCursor(ECC_GameTraceChannel1, true, ResultHit);
 			float FindRotatorResultYaw = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), ResultHit.Location).Yaw;
 			SetActorRotation(FQuat(FRotator(0.0f, FindRotatorResultYaw, 0.0f)));
 
@@ -183,7 +183,7 @@ void ATDSCharacter::AttackCharEvent(bool bIsFiring)
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("ATPSCharacter::AttackCharEvent - CurrentWeapon -NULL"));
+		UE_LOG(LogTemp, Warning, TEXT("ATDSCharacter::AttackCharEvent - CurrentWeapon -NULL"));
 	}
 }
 
@@ -335,7 +335,7 @@ void ATDSCharacter::InitWeapon(FName IdWeaponName)
 		}
 		else
 		{
-			UE_LOG(LogTemp, Warning, TEXT("ATPSCharacter::InitWeapon - Weapon not found in table -NULL"));
+			UE_LOG(LogTemp, Warning, TEXT("ATDSCharacter::InitWeapon - Weapon not found in table -NULL"));
 		}
 	}
 
